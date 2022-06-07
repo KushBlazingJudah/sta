@@ -70,10 +70,12 @@ int main(void)
 
 		if (copied && memcmp(line, lastline, sizeof(line))!=0) {
 			char* ptr = (char*)buf;
+			ptr++;
+
 			for (i = 0; i < nblocks; ++i) {
 				if (i != 0)
-					ptr = mempcpy(ptr, SEP, sizeof(SEP));
-				ptr = mempcpy(ptr, line[i], strlen(line[i]));
+					ptr = mempcpy(ptr-1, SEP, sizeof(SEP));
+				ptr = mempcpy(ptr-1, line[i], strlen(line[i]));
 			}
 
 			XStoreName(dpy, root, (char*)buf);
