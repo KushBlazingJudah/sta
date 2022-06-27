@@ -69,14 +69,15 @@ int main(void)
 		}
 
 		if (copied && memcmp(line, lastline, sizeof(line))!=0) {
-			char* ptr = (char*)buf;
-			ptr++;
+			char* ptr = (char*)buf+1;
 
 			for (i = 0; i < nblocks; ++i) {
 				if (i != 0)
-					ptr = mempcpy(ptr-1, SEP, sizeof(SEP));
+					ptr = mempcpy(ptr, SEP, sizeof(SEP));
 				ptr = mempcpy(ptr-1, line[i], strlen(line[i]));
 			}
+
+			puts(buf);
 
 			XStoreName(dpy, root, (char*)buf);
 			XFlush(dpy);
