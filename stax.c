@@ -76,8 +76,7 @@ int main(void)
 					ptr = mempcpy(ptr, SEP, sizeof(SEP));
 				ptr = mempcpy(ptr-1, line[i], strlen(line[i]));
 			}
-
-			puts(buf);
+			*ptr = 0;
 
 			XStoreName(dpy, root, (char*)buf);
 			XFlush(dpy);
